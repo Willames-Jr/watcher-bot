@@ -40,7 +40,5 @@ class NewsWatcher():
                 print("Atualização ")
                 message = 'Nova notícia\"'+newNews[0].text+'\", link '+'www.binance.com'+newNews[0]['href']
                 self._tBot.sendMessage(message)
-            print('ola')
-            self._tBot.sendMessage('eae, watcherBot aqui')
             self._actualNews = newNews
             sleep(120)
