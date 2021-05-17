@@ -2,6 +2,7 @@ from elonwatcher import ElonWatcher
 
 
 class SharedInfo:
+    __instance = None
     __actualElonTweets = []
     __actualBinanceNews = []
 
