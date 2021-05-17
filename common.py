@@ -18,7 +18,7 @@ class SharedInfo:
     def actualBinanceNews(self):
         return self.__actualBinanceNews
     
-    @actualElonTweets.setter
+    @actualBinanceNews.setter
     def actualBinanceNews(self, value):
         self.__actualBinanceNews = value
 
