@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 from telegramloggin import TelegramLogging
 from elonwatcher import ElonWatcher
+import common
 import os
 
 class NewsWatcher():
@@ -38,7 +39,8 @@ class NewsWatcher():
                 count += 1
             if(newNews != self._actualNews and self._actualNews != []):
                 print("Atualização ")
-                message = 'Nova notícia\"'+newNews[0].text+'\", link '+'www.binance.com'+newNews[0]['href']
+                message = 'Nova notícia \"'+newNews[0].text+'\", link '+'www.binance.com'+newNews[0]['href']
                 self._tBot.sendMessage(message)
             self._actualNews = newNews
+            common.SharedInfo.instance().actualBinanceNews = self._actualNews
             sleep(120)

@@ -1,6 +1,7 @@
 import tweepy
 import threading
 from time import sleep
+import common
 
 class ElonWatcher(threading.Thread):
 
@@ -28,12 +29,14 @@ class ElonWatcher(threading.Thread):
                 print('Novos tweets: ', newTweets)
                 print('Tweets atuais:', self._actualTweets)
                 print('////'*10)
-                if(newTweets != self._actualTweets and self._actualTweets != []):
+                if(newTweets[0] != self._actualTweets[0] and self._actualTweets != []):
                     self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0])
                 self._actualTweets = newTweets
+                
+                common.SharedInfo.instance().actualElonTweets = self._actualTweets
                 sleep(60)
             except IndexError:
                 print("Erro de index")
             except Exception as err:
                 print('Ocorreu um erro: ', err)
-                
+

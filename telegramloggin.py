@@ -1,5 +1,6 @@
 import telebot
 import threading
+import common
 
 class TelegramLogging(threading.Thread):
     def __init__(self, token):
@@ -13,11 +14,29 @@ class TelegramLogging(threading.Thread):
         for m in messages:
             if m.content_type == 'text':
                 if (m.text == '/start'):
-
                     if(m.chat.id not in self._ids):
                         self._ids.append(m.chat.id)
                     self.sendMessage("Olá, a partir de agora lhe manterei informado sobre notícias na binance e os tweets de Elon musk!")
+                if(m.text == '/actualTweets'):
+                    tweets = common.SharedInfo.instance().actualElonTweets
 
+                    if(tweets == []):
+                        self.sendMessage('Ops, ocorreu um erro ao pegar os tweets. Tente novamente mais tarde')
+                    else:
+                        message = "Aqui estão os Tweets: \n"
+                        for tweet in tweets:
+                            message += tweet + "\n"
+                        self.sendMessage(message)
+                if(m.text == '/actualNews'):
+                    newNews = common.SharedInfo.instance().actualBinanceNews
+
+                    if(newNews == []):
+                        self.sendMessage('Ops, ocorreu um erro ao pegar as notícias. Tente novamente mais tarde')
+                    else:
+                        for news in newNews:
+                            message = '\"'+newNews[0].text+'\", link '+'www.binance.com'+newNews[0]['href']
+                            self.sendMessage(message)
+                
     def sendMessage(self, msg):
         if ( self._ids != [] ):
             for id in self._ids: 
