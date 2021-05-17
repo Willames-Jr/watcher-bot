@@ -19,13 +19,13 @@ class ElonWatcher(threading.Thread):
                 timeline = self._api.user_timeline(user_id = elon.id, count = 5)
                 newTweets = []
                 for tweet in timeline:
-                    newTweets.append(tweet.text)   
+                    newTweets.append(tweet)   
                 print('////'*10) 
                 print('Novos tweets: ', newTweets)
                 print('Tweets atuais:', self._actualTweets)
                 print('////'*10)
                 if(newTweets[0] != self._actualTweets[0]):
-                    self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0])
+                    self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0].text +'\nLink: '+newTweets[0].entities.urls.url)
                 self._actualTweets = newTweets
                 
                 common.SharedInfo.instance().actualElonTweets = self._actualTweets
