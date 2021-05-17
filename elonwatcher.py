@@ -18,6 +18,8 @@ class ElonWatcher(threading.Thread):
             newTweets = []
             for tweet in timeline:
                 newTweets.append(tweet.text)    
+            print(newTweets)
+            print(self._actualTweets)
             if(newTweets != self._actualTweets and self._actualTweets != []):
                 self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0])
             self._actualTweets = newTweets
