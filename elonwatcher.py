@@ -15,16 +15,11 @@ class ElonWatcher(threading.Thread):
     def run(self):
         while True:
             try:
-                print('###'*10)
                 elon = self._api.get_user(screen_name='elonmusk')
-                print('Elon: ',elon)
                 timeline = self._api.user_timeline(user_id = elon.id)
-                print('Timeline: ', timeline)
-                print('####'*10)
                 newTweets = []
                 for tweet in timeline:
                     newTweets.append(tweet.text)   
-                    print(tweet.text)
                 print('////'*10) 
                 print('Novos tweets: ', newTweets)
                 print('Tweets atuais:', self._actualTweets)
@@ -36,8 +31,14 @@ class ElonWatcher(threading.Thread):
                 common.SharedInfo.instance().actualElonTweets = self._actualTweets
                 sleep(60)
             except IndexError:
-                print("Erro de index")
+                print("Erro de index no tweepy")
+                self._actualTweets = newTweets
+                
+                common.SharedInfo.instance().actualElonTweets = self._actualTweets
                 sleep(60)
             except Exception as err:
-                print('Ocorreu um erro: ', err)
+                print('Ocorreu um erro no tweepy: ', err)
+                self._actualTweets = newTweets
+                
+                common.SharedInfo.instance().actualElonTweets = self._actualTweets
                 sleep(60)

@@ -34,7 +34,7 @@ class TelegramLogging(threading.Thread):
                         self.sendMessage('Ops, ocorreu um erro ao pegar as notícias. Tente novamente mais tarde')
                     else:
                         for news in newNews:
-                            message = '\"'+newNews[0].text+'\", link '+'www.binance.com'+newNews[0]['href']
+                            message = '\"'+news.text+'\", link '+'www.binance.com'+news['href']
                             self.sendMessage(message)
                 
     def sendMessage(self, msg):
