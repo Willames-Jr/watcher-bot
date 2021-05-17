@@ -13,22 +13,27 @@ class ElonWatcher(threading.Thread):
     
     def run(self):
         while True:
-            print('###'*10)
-            elon = self._api.get_user(screen_name='elonmusk')
-            print('Elon: ',elon)
-            timeline = self._api.user_timeline(user_id = elon.id)
-            print('Timeline: ', timeline)
-            print('####'*10)
-            newTweets = []
-            for tweet in timeline:
-                newTweets.append(tweet.text)   
-                print(tweet.text)
-            print('////'*10) 
-            print('Novos tweets: ', newTweets)
-            print('Tweets atuais:', self._actualTweets)
-            print('////'*10)
-            if(newTweets != self._actualTweets and self._actualTweets != []):
-                self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0])
-            self._actualTweets = newTweets
-            sleep(60)
-            
+            try:
+                print('###'*10)
+                elon = self._api.get_user(screen_name='elonmusk')
+                print('Elon: ',elon)
+                timeline = self._api.user_timeline(user_id = elon.id)
+                print('Timeline: ', timeline)
+                print('####'*10)
+                newTweets = []
+                for tweet in timeline:
+                    newTweets.append(tweet.text)   
+                    print(tweet.text)
+                print('////'*10) 
+                print('Novos tweets: ', newTweets)
+                print('Tweets atuais:', self._actualTweets)
+                print('////'*10)
+                if(newTweets != self._actualTweets and self._actualTweets != []):
+                    self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0])
+                self._actualTweets = newTweets
+                sleep(60)
+            except IndexError:
+                print("Erro de index")
+            except Exception as err:
+                print('Ocorreu um erro: ', err)
+                
