@@ -37,6 +37,7 @@ class ElonWatcher(threading.Thread):
                 sleep(60)
             except IndexError:
                 print("Erro de index")
+                sleep(60)
             except Exception as err:
                 print('Ocorreu um erro: ', err)
-
+                sleep(60)
