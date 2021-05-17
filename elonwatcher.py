@@ -26,5 +26,5 @@ class ElonWatcher(threading.Thread):
             if(newTweets != self._actualTweets and self._actualTweets != []):
                 self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0])
             self._actualTweets = newTweets
-            sleep(30)
+            sleep(60)
             
