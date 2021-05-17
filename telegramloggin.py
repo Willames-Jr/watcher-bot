@@ -36,6 +36,13 @@ class TelegramLogging(threading.Thread):
                         for news in newNews:
                             message = '\"'+news.text+'\", link '+'www.binance.com'+news['href']
                             self.sendMessage(message)
+                if(m.text == '/help' or m.text == '/h'):
+                    self.sendMessage("""
+                        Olá Você pode usar a seguinte lista de comandos apra intergair comigo:\n
+                            */actualNews - Retorna as ultimas notícias da Binance
+                            */actualTweets - Retorna os últimos 5 tweets do Elon Musk 
+                        Sempre que houver uma atualização lhe mandarei uma mensagem ;)
+                    """)
                 
     def sendMessage(self, msg):
         if ( self._ids != [] ):
