@@ -25,7 +25,7 @@ class ElonWatcher(threading.Thread):
                 print('Tweets atuais:', self._actualTweets)
                 print('////'*10)
                 if(newTweets[0] != self._actualTweets[0]):
-                    self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0].text +'\nLink: '+newTweets[0].entities.urls['url'])
+                    self._tBot.sendMessage('Opa, tweet novo do Elon musk: '+ newTweets[0].text +'\nLink: https://twitter.com/elonmusk/status/'+tweet.id)
                 self._actualTweets = newTweets
                 
                 common.SharedInfo.instance().actualElonTweets = self._actualTweets
