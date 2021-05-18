@@ -43,4 +43,4 @@ class NewsWatcher():
                 self._tBot.sendMessage(message)
             self._actualNews = newNews
             common.SharedInfo.instance().actualBinanceNews = self._actualNews
-            sleep(120)
+            sleep(30)

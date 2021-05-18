@@ -29,16 +29,16 @@ class ElonWatcher(threading.Thread):
                 self._actualTweets = newTweets
                 
                 common.SharedInfo.instance().actualElonTweets = self._actualTweets
-                sleep(120)
+                sleep(60)
             except IndexError:
                 print("Erro de index no tweepy")
                 self._actualTweets = newTweets
                 
                 common.SharedInfo.instance().actualElonTweets = self._actualTweets
-                sleep(120)
+                sleep(60)
             except Exception as err:
                 print('Ocorreu um erro no tweepy: ', err)
                 self._actualTweets = newTweets
                 
                 common.SharedInfo.instance().actualElonTweets = self._actualTweets
-                sleep(120)
+                sleep(60)

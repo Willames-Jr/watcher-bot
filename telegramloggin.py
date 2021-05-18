@@ -23,10 +23,9 @@ class TelegramLogging(threading.Thread):
                     if(tweets == []):
                         self.sendMessage('Ops, ocorreu um erro ao pegar os tweets. Tente novamente mais tarde')
                     else:
-                        message = "Aqui estão os Tweets: \n"
                         for tweet in tweets:
-                            message += tweet.text + "\nLink: https://twitter.com/elonmusk/status/"+str(tweet.id)
-                        self.sendMessage(message)
+                            message = tweet.text + "\nLink: https://twitter.com/elonmusk/status/"+str(tweet.id)
+                            self.sendMessage(message)
                 if(m.text == '/actualNews'):
                     newNews = common.SharedInfo.instance().actualBinanceNews
 
@@ -37,13 +36,8 @@ class TelegramLogging(threading.Thread):
                             message = '\"'+news.text+'\", link '+'www.binance.com'+news['href']
                             self.sendMessage(message)
                 if(m.text == '/help' or m.text == '/h'):
-                    self.sendMessage("""
-                        Olá Você pode usar a seguinte lista de comandos apra intergair comigo:\n
-                            */actualNews - Retorna as ultimas notícias da Binance
-                            */actualTweets - Retorna os últimos 5 tweets do Elon Musk 
-                        Sempre que houver uma atualização lhe mandarei uma mensagem ;)
-                    """)
-                
+                    self.sendMessage("/actualNews - Retorna as ultimas notícias da Binance")
+                    self.sendMessage("/actualTweets - Retorna os últimos 5 tweets do Elon Musk \n Em alguns momentos esse comando pode retornar apenas o último tweet")
     def sendMessage(self, msg):
         if ( self._ids != [] ):
             for id in self._ids: 
