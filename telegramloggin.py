@@ -25,7 +25,7 @@ class TelegramLogging(threading.Thread):
                     else:
                         message = "Aqui estão os Tweets: \n"
                         for tweet in tweets:
-                            message += tweet.text + "\nLink: "+tweet.entities.urls.url
+                            message += tweet.text + "\nLink: "+tweet.entities.urls['url']
                         self.sendMessage(message)
                 if(m.text == '/actualNews'):
                     newNews = common.SharedInfo.instance().actualBinanceNews
